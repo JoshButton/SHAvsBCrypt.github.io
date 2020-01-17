@@ -1,0 +1,59 @@
+.title, .Hashing, .SHA, .BCrypt, .Compare {
+	border-radius: 25px;
+	font-family: Muli;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+.hashButton{
+	border-radius: 25px;
+	border: 2px soild;
+	height: 10px;
+}
+h1{
+	font-size: 70;
+}
+h2{
+	font-size: 50;
+}
+h3{
+	font-size: 30;
+}
+#SHAHASH, #SHATIME, #BHASH, #BTIME, #speed{
+	font-size: 25;
+}
+#ip2 {
+    border-radius: 25px;
+    border: 2px solid;
+    padding: 20px; 
+    width: 400px;
+    height: 10px;    
+}
+.title {
+	background-image: linear-gradient(to bottom right, #add8e6, grey);
+	height: 500;	
+}
+.hashing {
+	background-image: linear-gradient(to bottom right, #fed8b1, grey);
+	height: 500;
+}
+.SHA {
+	background-image: linear-gradient(to bottom right, #62FE95, grey);
+	height: 500;
+}
+.BCrypt {
+	background-image: linear-gradient(to bottom right, #E362FE, grey);
+	height: 600;
+}
+.Compare {
+	background-image: linear-gradient(to bottom right, #9562FE, grey);
+	height: 1000;
+}
+@font-face {
+  font-family: 'Muli';
+  src: url('Muli-Regular.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+}  

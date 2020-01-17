@@ -1,0 +1,77 @@
+<HTML>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>BCrypt vs SHA256</title>
+	<meta name="Resource-type" content="Document" />
+	<link rel="stylesheet" type="text/css" href="style.css" />
+	<script src="bcrypt.js"></script>
+	<script src="forge-sha256.min.js"></script>
+	<script src="jquery-3.4.1.min.js"></script>
+</head>
+<body>
+	<center>
+	<div class="main">
+		<div class="title">
+			<div>
+				<h1>SHA vs BCrypt</h1><br>
+				<h3>By Joshua Button</h3>
+			</div>
+		</div>
+		<div class="Hashing">
+			<div>
+				<h2>What are they?</h2>
+				<h3>A hash function is a security tool used widely across computer security to verifiy sensitive data, a so called digital signiture or passport that can be used to authenticate the data you have is the data it claims to be. This is done by creating a hash, a psudorandom string of numbers and letters by running data through a "one-way algorithm" that will always return the same hash for the same data. This is differnt from encrypion because encrytpion is revesable, whilst hashing can only go one way (or is extremly computationaly hard to reverse from hash to key)</h3>
+			</div>
+		</div>
+		<div class="SHA">
+			<div>
+				<h2>SHA256</h2>
+				<h3>SHA256 comes from the SHA2 family which was designed to replace the ageing SHA1 which was subsequently broken and no longer fit for security sensitive work. SHA256 is designed to do very fast verification of signatures. <br><br> Bits: 256bits <br> Security: none <br> Speed: Fast</h3>
+			</div>
+		</div>
+		<div class="BCrypt">
+			<div>
+				<h2>BCrypt</h2>
+				<h3>BCrypt is designed to be slow, but this is a good thing. It is designed to assist in one of the most important pieces of data found in the 21st Century, passwords. Moore’s law claims “doubling computer power” every 18 months and so we have a problem that passwords are sitting idle on databases not getting any harder to compute. BCrypt adds a cost factor to its hashing function where cost reflects how many times the algorithm is applied and so with every 1 level increased in cost the work to calculate the resulting hash is doubled allowing for BCrypt to infinitely scale with computing power through the decades. BCrypt hashes (by default) will appear different with every NEW calculation, this is due to BCrypt promoting the salting of hashes. <br><br> Bits: 128bit (salt) + 184bit hash <br> Security: Salt <br> Speed: Slow</h3>
+			</div>
+		</div>
+		<div class="Compare">
+			<div>
+				<h2>Comparison</h2><br>
+				<p><b>Type in some text to hash:</b></p>
+				<input type="text" id="ip2"/>
+				<h2>SHA Hash:<div id="SHAHASH"></div></h2>
+				<h2>SHA Time:<div id="SHATIME"></div></h2>
+				<h2>BCrypt Hash:<div id="BHASH"></div></h2>
+				<h2>BCrypt Time:<div id="BTIME"></div></h2>
+				<h2>Speed:<div id="speed"></div></h2>
+			</div>
+		</div>
+	</div>
+	</center>
+	
+	<script>
+		var t0, t1, t3, t2,shatime, bcrypttime
+	
+	
+		function result(BHash){
+			bcrypttime = t3 - t2;
+			$("#BHASH").html(BHash);
+			$("#BTIME").html(bcrypttime + " ms.");
+			$("#speed").html("SHA is " + bcrypttime / shatime + " times faster");
+		}
+	
+		$("#ip2").on("change keyup paste", function(){
+			var plainText = document.getElementById("ip2").value;
+			t0 = performance.now();
+			var Shash = forge_sha256(plainText);
+			t1 = performance.now();
+			$("#SHAHASH").html(Shash);
+			shatime = t1 - t0
+			$("#SHATIME").html(shatime + "ms.");
+			t2 = performance.now();
+			hashpw(plainText, gensalt(12), result);
+			t3 = performance.now();
+		})
+	</script>
+</body>
